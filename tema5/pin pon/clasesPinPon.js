@@ -11,6 +11,10 @@ class Juego {
     this.dibujaBola(this.bola, this.svg);
     this.creaGif();
     this.puntos = puntos;
+    this.subePala1 = false;
+    this.subePala2 = false;
+    this.bajaPala1 = false;
+    this.bajaPala2 = false;
     
     this.puntosJugador1 = 0;
     this.puntosJugador2= 0;
@@ -85,29 +89,78 @@ class Juego {
       var teclaPulsada = event.keyCode;
 
       if(teclaPulsada == 65){
+          pala1.subePala1 = true;
+          
         
-          pala1.muevePalaArriba(pala1, tamanoSvg.height);
+      }
+
+      if(teclaPulsada == 68){
+          this.pala1.bajaPala1 = true;
+          
+
+      }
+
+      if(teclaPulsada == 40){
+          pala2.subePala2 = true;
+         
+
+      }
+
+      if(teclaPulsada == 38){
+        pala2.bajaPala2 = true;
+        
+      }
+      
+    });
+
+    document.addEventListener("keyup", (event) => {
+      var teclaPulsada = event.keyCode;
+
+      if(teclaPulsada == 65){
+          pala1.subePala1 = false;
+          
         
       }
 
       if(teclaPulsada == 68){
         
-          pala1.muevePalaAbajo(pala1);
+          pala1.bajaPala1 = false;
 
       }
 
       if(teclaPulsada == 40){
-          pala2.muevePalaArriba(pala2, tamanoSvg.height);
+          pala2.subePala2 = false;
 
       }
 
       if(teclaPulsada == 38){
+        pala2.bajaPala2 = false;
+      }
+     
+    });
+
+    setInterval(()=>{
+      if(pala1.subePala1){
+          pala1.muevePalaArriba(pala1, tamanoSvg.height);
+
+      }
+      
+      if(pala1.bajaPala1){
+        pala1.muevePalaAbajo(pala1);
+      }
+
+      if(pala2.subePala2){
+        pala2.muevePalaArriba(pala2, tamanoSvg.height);
+
+      }else if(pala2.bajaPala2){
         pala2.muevePalaAbajo(pala2);
 
       }
+
       document.getElementById("pala1").setAttribute("y", pala1.yPala);
       document.getElementById("pala2").setAttribute("y", pala2.yPala);
-    });
+  },5);
+
   }
 
 
@@ -274,7 +327,7 @@ class Pala{
 
     muevePalaAbajo(pala){
       if(pala.yPala > 0){
-        pala.yPala -= 10;
+        pala.yPala -= 2;
       }
        
       
@@ -284,7 +337,7 @@ class Pala{
     muevePalaArriba(pala, svgHeight){
 
       if(pala.yPala<svgHeight-pala.altoPala){
-        pala.yPala += 10;
+        pala.yPala += 2;
       }
     }
 
