@@ -1,0 +1,96 @@
+body{
+    background-image: url(corcho.jpg);
+}
+
+.menu{
+    display: flex;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+
+}
+
+#button {
+    padding: 0;
+    text-align: center;
+
+    
+    }
+
+#button li {
+    display: inline;
+    }
+
+
+#button li img {
+    font-family: Arial;
+    font-size: 15px;
+    text-decoration: none;
+    float: left;
+    padding: 10px;
+    background-color: #dfa280;
+    color: #fff;
+    }
+
+#button li img:hover {
+        background-color: #df78a0;
+        margin-top: -2;
+        /*padding-bottom: 12px;*/
+        transform:scale(1.1,1.1);
+}
+
+img{
+    width: 50px;
+}
+
+.nota{
+    background-color: rgb(255, 250, 185);
+    min-width: 100px;
+    min-height: 50px;
+    max-width: 200px;
+    max-height: 200px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    border: 2px solid rgb(255, 153, 0);
+    border-radius: 10px;
+    margin: 5px;
+    margin-top: 10px;
+    box-shadow: 10px 10px 10px rgb(145, 68, 16);
+
+}
+
+#colores{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    text-align: right; 
+    flex-flow: row;
+    align-self: flex-end;
+}
+
+.texto{
+    background-color: rgb(255, 250, 185);
+    
+}
+
+input{
+    font-family: fantasy;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+textarea{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.func{
+    margin: 8px;
+    width: 25px;
+}
+
+p{
+    color: slategray;
+    font-size: small;
+    text-align: right;
+}
