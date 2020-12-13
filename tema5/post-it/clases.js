@@ -5,33 +5,24 @@ export {Nota, Notas, PostIt};
 class Nota{
     constructor(){
         this.nota = null;
-        this.posX = null;
-        this.posY = null;
-        this.titulo = null;
-        this.texto = null;
-        this.codigo = null;
-        this.hora = new Date();
-        this.col = null;
     }
     
     
 
-    guardaNota(title, text, cod, hora){
-            this.titulo = title;
-            this.texto = text;
-            this.codigo = cod;
-            this.hora = hora;
+    guardaNota(title, text, cod, hora, posX, posY){
             this.nota = {
-                Titulo: this.titulo,
-                Texto: this.texto,
-                Tiempo: this.hora,
-                Codigo: this.codigo
+                Titulo: title,
+                Texto: text,
+                Tiempo: hora,
+                Codigo: cod,
+                PosX: posX,
+                PosY: posY,
             }
     }
 
-
-    cambiaColores(color){
-        this.nota.style.background = color;
+    cambiaPos(posX, posY){
+        this.nota.PosX = posX;
+        this.nota.PosY = posY;
     }
 
     
@@ -65,7 +56,15 @@ class Notas{
         return null;
     }
 
-
+    cambiaPosicion(titulo,texto, posX, posY){
+        for (const nota of this.notas) {
+            if(nota.Titulo == titulo && nota.Texto == texto){
+                nota.PosX = posX;
+                nota.PosY = posY;
+            }
+        }
+        return null;
+    }
     
         removeAll(){
             this.notas = [];
@@ -99,6 +98,7 @@ class PostIt{
         this.pintaNotasExistentes();
         this.visualizaNota();
         this.borrarTodasNotas();
+        this.capturaColor();
     }
 
     creaNota(){
@@ -125,12 +125,18 @@ class PostIt{
         this.save.className = "func";
         this.save.id = "save";
         this.save.codigo = this.cod;
+        this.mueve = document.createElement('img');
+        this.mueve.src = "mueve.svg";
+        this.mueve.className = "func";
+        this.mueve.id = "mueve";
         this.funciones.appendChild(this.save);
         this.funciones.appendChild(this.edit);
         this.funciones.appendChild(this.borra);
+        this.funciones.appendChild(this.mueve);
         this.note.appendChild(this.funciones);
         this.note.appendChild(this.title);
         this.note.appendChild(this.text);
+        
         this.guardar = document.createElement('button');
         this.guardar.textContent = "Guardar cambios";
         this.guardar.style.display = "none";
@@ -142,7 +148,7 @@ class PostIt{
         this.note.style.color = this.note.col;
         this.editaNota();
         this.borraNota();
-        /*this.mueveNota();*/
+        this.mueveNota();
         this.cod++;
         
     }
@@ -162,9 +168,11 @@ class PostIt{
         let a = localStorage.getItem("notas");
         let posits = JSON.parse(a);
         for (const posit of posits) {
-            this.posit.guardaNota(posit.Titulo, posit.Texto, posit.Codigo, posit.Tiempo);
+            this.posit.guardaNota(posit.Titulo, posit.Texto, posit.Codigo, posit.Tiempo, posit.PosX, posit.PosY);
             this.notas.add(this.posit.nota);
             this.creaNota();
+            this.note.style.marginLeft = posit.PosX;
+            this.note.style.marginTop = posit.PosY;
             this.title.readOnly = true;
             this.text.readOnly = true;
             this.save.style.display = "none";
@@ -181,7 +189,8 @@ class PostIt{
             this.text.readOnly = true;
             let title = this.title.value;
             let texto = this.text.value;
-            this.posit.guardaNota(title, texto, this.cod, new Date());
+            let posicion = this.note.getBoundingClientRect();
+            this.posit.guardaNota(title, texto, this.cod, new Date(), posicion.left, posicion.top);
             this.notas.add(this.posit.nota);
             this.tiempo.textContent = this.calculaTiempo(this.posit.hora);
             setInterval(()=>{
@@ -244,10 +253,6 @@ class PostIt{
 
 
 
-    cambiaColor(){
-
-    }
-
     
 
     //calcular el tiempo que hace desde la publicación de la nota
@@ -268,10 +273,70 @@ class PostIt{
     }
 
 
+
+    mueveNota(){
+        var divs=document.querySelectorAll("#mueve");
+        var divActual=null;
+        var arrastrando=false;
+        divs.forEach(div=>{
+        div.addEventListener("mousedown",(e)=>
+        {
+            e.stopPropagation();
+            arrastrando=true;
+            divActual=e.currentTarget;
+        });
+        });
+
+        window.addEventListener('mousemove',(e)=>
+        {
+            if(arrastrando){
+        
+                divActual.parentNode.parentNode.style.marginLeft = (e.x-150)+"px";
+                divActual.parentNode.parentNode.style.marginTop = (e.y-120)+"px";
+                
+            }
+        });
+
+
+        window.addEventListener('mouseup', (e)=>
+        {
+            arrastrando= false;
+            let posicionX = e.target.parentNode.parentNode.style.marginLeft;
+            let posicionY = e.target.parentNode.parentNode.style.marginTop;
+            let titulo = e.target.parentNode.parentNode.childNodes[1].value;
+            let texto = e.target.parentNode.parentNode.childNodes[2].value;
+            this.notas.cambiaPosicion(titulo, texto, posicionX, posicionY);
+            localStorage.setItem("notas", JSON.stringify(this.notas.notas));
+        });
+
+
    
+    }
+
+    capturaColor(){
+        this.color.addEventListener("click", this.cambiaColorNotas);
+    }
+
+    cambiaColorNotas(){
+        var divs=document.querySelectorAll(".nota");
+        document.getElementById("colores").style.display = "block";
+        document.getElementById("cambiar").style.display = "block";
+        document.getElementById("cambiar").addEventListener("click", ()=>
+        {
+            let color = document.getElementById("colores").value;
+            for (const nota of divs){
+                nota.style.backgroundColor = color;
+            }
+            document.getElementById("colores").style.display = "none";
+            document.getElementById("cambiar").style.display = "none";
+        });
+        
+    }
+
+
+
+
 }
-
-
 const DATE_UNITS = {
     day: 86400,
     hour: 3600,

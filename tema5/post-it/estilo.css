@@ -49,6 +49,7 @@ img{
     min-height: 50px;
     max-width: 200px;
     max-height: 200px;
+    position: absolute;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -61,12 +62,13 @@ img{
 }
 
 #colores{
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 30px;
     display: flex;
     text-align: right; 
     flex-flow: row;
     align-self: flex-end;
+    
 }
 
 .texto{
@@ -94,3 +96,37 @@ p{
     font-size: small;
     text-align: right;
 }
+
+.button {
+    width: 200px;
+    height: 35px;
+    background: #eb94d0;
+	background-image: -webkit-linear-gradient(top, #dd6b00, #fff7e7);
+    background-image: -moz-linear-gradient(top, #dd6b00, #fff7e7);
+    background-image: -ms-linear-gradient(top,  #dd6b00, #fff7e7);
+    background-image: -o-linear-gradient(top,  #dd6b00, #fff7e7);
+    background-image: linear-gradient(to bottom,  #dd6b00, #fff7e7);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    text-shadow: 3px 2px 1px #9daef5;
+    -webkit-box-shadow: 6px 5px 24px #666666;
+    -moz-box-shadow: 6px 5px 24px #666666;
+    box-shadow: 6px 5px 24px #666666;
+    font-family: Arial;
+    color: #000000;
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: #2079b0;
+    background-image: -webkit-linear-gradient(top, #fff7e7, #dd6b00);
+    background-image: -moz-linear-gradient(top,#fff7e7, #dd6b00);
+    background-image: -ms-linear-gradient(top, #fff7e7, #dd6b00);
+    background-image: -o-linear-gradient(top, #fff7e7, #dd6b00);
+    background-image: linear-gradient(to bottom,#fff7e7, #dd6b00);
+    text-decoration: none;
+  }
+
