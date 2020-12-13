@@ -192,9 +192,9 @@ class PostIt{
             let posicion = this.note.getBoundingClientRect();
             this.posit.guardaNota(title, texto, this.cod, new Date(), posicion.left, posicion.top);
             this.notas.add(this.posit.nota);
-            this.tiempo.textContent = this.calculaTiempo(this.posit.hora);
+            this.tiempo.textContent = this.calculaTiempo(this.posit.nota.Tiempo);
             setInterval(()=>{
-                this.tiempo.textContent = this.calculaTiempo(this.posit.hora);
+                this.tiempo.textContent = this.calculaTiempo(this.posit.nota.Tiempo);
             }, 60000);
             this.save.style.display = "none";
             localStorage.setItem("notas", JSON.stringify(this.notas.notas));
