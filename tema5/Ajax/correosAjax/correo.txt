@@ -1,0 +1,20 @@
+{"listaCorreos":[{
+    "from":"Nerea Rodriguez Martin", 
+    "asunto":"Ejercicios DWEC", 
+    "mensaje":"Buenos días, te mando algunos ejercicios."
+    }, 
+
+    {
+    "from":"Pilar Martin", 
+    "asunto":"Haz la comida", 
+    "mensaje":"Hola Nerea, hoy te toca hacer la comida"}, 
+
+    { "from":"Ainara Vazquez", 
+    "asunto":"Actividad CSS", 
+    "mensaje":"Te paso mi parte de la actividad terminada"}, 
+
+    { "from":"Guillermo Rodriguez", 
+    "asunto":"Quitar respuesta automática", 
+    "mensaje":"Buenos días, necesito que me desactives las respustas automáticas por vacaciones de mi cuenta de outlook."}
+        
+        ]}
