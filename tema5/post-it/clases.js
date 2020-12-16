@@ -103,7 +103,6 @@ class PostIt{
 
     creaNota(){
         this.note = document.createElement('div');
-        this.note.draggable = true;
         this.title = document.createElement("input");
         this.title.placeholder = "Titulo de la nota"
         this.text = document.createElement('textarea');

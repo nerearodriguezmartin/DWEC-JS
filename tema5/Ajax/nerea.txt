@@ -1,0 +1,1 @@
+{"listaPersonas":[{"nombre":"nerea", "apellido":"rodriguez", "profesion":"influencer"}, {"nombre":"pilar", "apellido":"martin", "profesion":"admin"}, {"nombre":"carlota", "apellido":"picó", "profesion":"amiga"}, {"nombre":"carloti", "apellido":"urbano", "profesion":"amiguisima"}]}
