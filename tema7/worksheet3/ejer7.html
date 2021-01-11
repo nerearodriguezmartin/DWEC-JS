@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.js" type="text/javascript"></script>
+    <style>
+        div {
+          background-color: #bca;
+          width: 200px;
+          height: 1.1em;
+          text-align: center;
+          border: 2px solid green;
+          margin: 3px;
+          font-size: 14px;
+        }
+        button {
+          font-size: 14px;
+        }
+        </style>
+</head>
+<body>
+    <button id="go1">&raquo; Animate </button>
+    <button id="go4">&raquo; Reset</button>
+    <div id="block1">Block1</div>
+    <div id="block2">Block2</div>
+    <div id="block3">Block3</div>
+    <div id="block4">Block4</div>
+
+    <script>
+        $( "#go1" ).click(function() {
+          $( "#block1" )
+            .animate({
+              width: "90%"
+            }, {
+              queue: false,
+              duration: 3000
+            })
+            .animate({ fontSize: "24px" }, 1500 )
+            .animate({ borderRightWidth: "15px" }, 1500 );
+
+            $( "#block2" )
+            .animate({ width: "90%" }, 1000 )
+            .animate({ fontSize: "24px" }, 1000 )
+            .animate({ borderLeftWidth: "15px" }, 1000 );
+
+            $( "#block3" )
+            .animate({
+              width: "90%"
+            }, {
+              queue: false,
+              duration: 3000
+            })
+            .animate({ fontSize: "24px" }, 1500 )
+            .animate({ borderRightWidth: "15px" }, 1500 );
+
+            $( "#block4" )
+            .animate({ width: "90%" }, 1000 )
+            .animate({ fontSize: "24px" }, 1000 )
+            .animate({ borderLeftWidth: "15px" }, 1000 );
+            
+        });
+         
+        
+         
+        $( "#go4" ).click(function() {
+          $( "div" ).css({
+            width: "",
+            fontSize: "",
+            borderWidth: ""
+          });
+        });
+        </script>
+</body>
+
+
+</html>

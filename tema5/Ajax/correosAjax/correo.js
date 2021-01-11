@@ -6,7 +6,6 @@ function loadDoc() {
        // que hago cuando entra la respuesta
        let resultado = JSON.parse(this.responseText);
        let result = resultado.listaCorreos;
-       let correos = [];
        for(i=0; i<result.length; i++){
             fila = document.createElement("tr");
             columna = document.createElement("td");
@@ -32,4 +31,10 @@ function loadDoc() {
 
   window.onload = loadDoc();
 
- /* setInterval(loadDoc, 5000);*/
+setInterval(()=>{
+    let rows = document.querySelectorAll("tr");
+    for(i=0; i<rows.length; i++)
+        document.getElementById("tabla").childNodes[i].remove();
+        loadDoc();
+
+}, 5000);

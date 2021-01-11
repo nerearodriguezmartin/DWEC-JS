@@ -1,0 +1,1 @@
+$("ol:first-child").hide();
